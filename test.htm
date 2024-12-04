@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+</head>
+
+<style>
+    :root {
+    background-color: white;
+   --shild-border-color:  rgb(30, 17, 15);
+   --shild-inner-color:  rgb(111, 115, 108);
+   --shild-inner-color2:  rgb(69, 71, 67);
+   --shild-shaddow-color: rgb(43, 44, 42);
+   --shild-shaddow-color2: rgb(126, 130, 122);
+   --vault-door--outer-color: rgb(30, 17, 15);
+   --vault-door--inner-color: rgb(112, 48, 48);
+   --pinpad-active-key: rgb(87, 39, 39);
+   --pinpad-inactive-key: rgb(56,57,54);
+   --pinpad-success-key: rgb(227, 205, 164);
+}
+
+div {
+    box-sizing: border-box;
+}
+
+.outer {
+    height: 400px;
+    width: 400px;
+}
+
+.shield {
+    height: 100%;
+    width: 100%;
+    border: 10px solid var(--shild-border-color);
+    background-image: 
+    linear-gradient(to right, var(--shild-inner-color), var(--shild-inner-color2));
+    border-radius: 50% 50% 50% 50% / 12% 12% 88% 88%;
+    display: flex;
+    padding-top: 5%;
+    justify-content: center;
+    box-shadow: 10px 20px 30px -10px var(--shild-shaddow-color);
+    transform-origin: right;
+}
+
+.doors {
+    height: 75%;
+    width: 75%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.door {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border: 20px solid var(--vault-door--outer-color);
+    border-radius: 50%;
+    background-color: var(--vault-door--inner-color) ;
+    box-shadow: 0px 20px 30px 5px var(--shild-shaddow-color);
+    z-index: 2;
+}
+
+.door2 {
+    position: absolute;
+    height: 88%;
+    width: 88%;
+    border: 8px dotted var(--vault-door--inner-color) ;
+    border-radius: 50%;
+    z-index: 3;
+    transition:all .5s ease-in-out;
+}
+
+.handles {
+    height: 75%;
+    width: 75%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: 
+        radial-gradient(circle, var(--vault-door--outer-color) 20%, transparent 21%);
+    z-index: 4;
+    
+}
+
+.handle {
+    position: absolute;
+    background-color: var(--vault-door--outer-color);
+    border-radius: 3px;
+    height: 6%;
+    width: 65%;
+    z-index: 5;
+    
+}
+
+.keyPad {
+    height: 13%;
+    width: 13%;
+    position: absolute;
+    z-index: 8;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+}
+
+.displayKey {
+    background-color: var(--pinpad-inactive-key);
+    height: 6px;
+    width: 9px;
+    border-radius: 2px;
+    animation: none;
+}
+
+.handle1  { transform: rotate(5deg) ; transition:all .4s ease-out;}
+.handle2  { transform: rotate(125deg) ; transition:all .4s ease-out;}
+.handle3  { transform: rotate(245deg) ; transition:all .4s ease-out;}
+
+
+
+.shield:hover {
+    .handles {transform: perspective(1200px) rotateY(10deg) ;transition:all 1s ease-in-out;}
+    .keyPad { transform: perspective(1200px) rotateY(10deg) ;transition:all 1s ease-in-out;}
+    .displayKey { transform: perspective(1200px) rotateY(10deg) ;transition:all 1s ease-in-out;}
+    .handle1 { transform: perspective(1200px) rotateY(10deg) rotate(320deg); transition:all 1s ease-in-out; }
+    .handle2 { transform: perspective(1200px) rotateY(10deg) rotate(440deg); transition:all 1s ease-in-out; }
+    .handle3 { transform: perspective(1200px) rotateY(10deg) rotate(560deg); transition:all 1s ease-in-out; }
+    .door { transform: perspective(1200px) rotateY(10deg); box-shadow: -30px 0px 20px 5px var(--shild-shaddow-color2); transition:all 1s ease-in-out;}
+    .door2 { transform: perspective(1200px) rotateY(10deg) rotate(30deg); height: 70%; width: 80%; transition:all 1s ease-in-out;}
+    .displayKey { animation-name: pinPad; animation-duration:  .5s };
+}
+
+.displayKey:nth-child(1) { animation-delay: .35s; background-color: var(--pinpad-active-key)}
+.displayKey:nth-child(2) { animation-delay: .15s; }
+.displayKey:nth-child(3) { animation-delay: .3s; }
+.displayKey:nth-child(4) { animation-delay: .28s; background-color: var(--pinpad-active-key)}
+.displayKey:nth-child(5) { animation-delay: .22s; }
+.displayKey:nth-child(6) { animation-delay: .0s; background-color: var(--pinpad-active-key)}
+.displayKey:nth-child(7) { animation-delay: .1s; }
+.displayKey:nth-child(8) { animation-delay: .05s; background-color: var(--pinpad-active-key)}
+.displayKey:nth-child(9) { animation-delay: .21s; }
+
+
+@keyframes pinPad {
+    0% {
+        background-color: var(--pinpad-inactive-key);
+    }
+    70% {
+        background-color: var(--pinpad-active-key);
+    }
+    100% {
+        background-color: var(--pinpad-success-key);
+    }
+}
+
+
+</style>
+
+<body>
+    <div class="outer">
+        <div class="shield">
+            <div class="doors">
+                <div class="door"></div>
+                <div class="door2"></div>
+                <div class="handles">
+                    <div class="handle handle1"></div>
+                    <div class="handle handle2"></div>
+                    <div class="handle handle3"></div>
+                </div>
+                <div class="keyPad">
+                    <div class="displayKey k1"></div>
+                    <div class="displayKey k2"></div>
+                    <div class="displayKey k3"></div>
+                    <div class="displayKey k4"></div>
+                    <div class="displayKey k5"></div>
+                    <div class="displayKey k6"></div>
+                    <div class="displayKey k7"></div>
+                    <div class="displayKey k8"></div>
+                    <div class="displayKey k9"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+</body>
+
+</html>
